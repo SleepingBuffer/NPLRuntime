@@ -31,6 +31,12 @@ if [ $result == 0 ]; then
     fi
     popd
 
+    nplc_exe_path=/usr/local/bin/nplc
+    if [ -f ./npl_packages/main/script/ide/System/nplcmd/nplc ]; then
+        echo "install nplc"
+        ln -s $(pwd)/npl_packages/main/script/ide/System/nplcmd/nplc $nplc_exe_path
+    fi
+
     # run all NPL tests
     echo "you can test npl runtime by typing: npl NPLRuntime/tests/helloworld.lua"
 fi

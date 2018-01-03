@@ -1,7 +1,7 @@
 #!/bin/bash
 # author: lixizhi@yeah.net
 # date: 2016.2.26
-# desc: to install dependencies, please see `.travis.yml` 
+# desc: to install dependencies, please see `.travis.yml`
 # For boost: Download boost 1.55 or above and build with `./b2 link=static`
 
 # run cmake in ./NPLRuntime folder and make
@@ -40,8 +40,14 @@ if [ $result == 0 ]; then
     fi
     popd
 
-    # run all NPL tests 
-    echo "you can test npl runtime by typing: npl NPLRuntime/tests/helloworld.lua" 
+    nplc_exe_path=/usr/local/bin/nplc
+    if [ -f ./npl_packages/main/script/ide/System/nplcmd/nplc ]; then
+        echo "install nplc"
+        ln -s $(pwd)/npl_packages/main/script/ide/System/nplcmd/nplc $nplc_exe_path
+    fi
+
+    # run all NPL tests
+    echo "you can test npl runtime by typing: npl NPLRuntime/tests/helloworld.lua"
 fi
 
 exit $result
